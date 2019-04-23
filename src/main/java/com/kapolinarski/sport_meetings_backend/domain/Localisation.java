@@ -25,4 +25,8 @@ public class Localisation {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "localisation_id")
     private List<LocalisationPoint> polygonPoints = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "localisation_id")
+    private List<SportType> sportTypes = new ArrayList<>();
 }

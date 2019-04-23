@@ -13,4 +13,6 @@ public class LocalisationDTO {
     public LocalisationPointDTO center;
 
     public List<LocalisationPointDTO> polygonPoints;
+
+    public List<String> sportTypes;
 }

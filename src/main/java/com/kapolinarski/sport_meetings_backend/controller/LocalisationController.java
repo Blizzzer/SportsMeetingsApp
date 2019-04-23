@@ -2,6 +2,7 @@ package com.kapolinarski.sport_meetings_backend.controller;
 
 import com.kapolinarski.sport_meetings_backend.domain.Localisation;
 import com.kapolinarski.sport_meetings_backend.domain.LocalisationPoint;
+import com.kapolinarski.sport_meetings_backend.domain.SportType;
 import com.kapolinarski.sport_meetings_backend.dtos.LocalisationDTO;
 import com.kapolinarski.sport_meetings_backend.dtos.LocalisationPointDTO;
 import com.kapolinarski.sport_meetings_backend.service.LocalisationService;
@@ -72,6 +73,7 @@ public class LocalisationController {
         localisationDTO.id = localisation.getId();
         localisationDTO.center = mapToLocalisationPointDTO(localisation.getCenter());
         localisationDTO.polygonPoints = localisation.getPolygonPoints().stream().map(this::mapToLocalisationPointDTO).collect(toList());
+        localisationDTO.sportTypes = localisation.getSportTypes().stream().map(SportType::getSportType).collect(toList());
         return localisationDTO;
     }
 

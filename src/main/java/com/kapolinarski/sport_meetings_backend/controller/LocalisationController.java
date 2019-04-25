@@ -67,27 +67,6 @@ public class LocalisationController {
     @GetMapping("/{id}")
     public LocalisationDTO getSingleLocalisation(@PathVariable Long id) {
         Localisation localisation = service.getSingleLocalisation(id);
-//        return mapToLocalisationDTO(localisation);
         return mapper.toLocalisationDTO(localisation);
-    }
-
-    private LocalisationDTO mapToLocalisationDTO(Localisation localisation) {
-        LocalisationDTO localisationDTO = new LocalisationDTO();
-        localisationDTO.name = localisation.getName();
-        localisationDTO.description = localisation.getDescription();
-        localisationDTO.id = localisation.getId();
-        localisationDTO.center = mapToLocalisationPointDTO(localisation.getCenter());
-        localisationDTO.polygonPoints = localisation.getPolygonPoints().stream().map(this::mapToLocalisationPointDTO).collect(toList());
-        localisationDTO.sportTypes = localisation.getSportTypes().stream().map(SportType::getSportType).collect(toList());
-        return localisationDTO;
-    }
-
-    private LocalisationPointDTO mapToLocalisationPointDTO(LocalisationPoint localisationPoint) {
-        LocalisationPointDTO localisationPointDTO = new LocalisationPointDTO();
-        localisationPointDTO.name = localisationPoint.getName();
-        localisationPointDTO.id = localisationPoint.getId();
-        localisationPointDTO.latitude = localisationPoint.getLatitude();
-        localisationPointDTO.longitude = localisationPoint.getLongitude();
-        return localisationPointDTO;
     }
 }

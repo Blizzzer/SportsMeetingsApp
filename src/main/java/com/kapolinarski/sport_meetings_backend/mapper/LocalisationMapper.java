@@ -5,10 +5,10 @@ import com.kapolinarski.sport_meetings_backend.dtos.LocalisationDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+import java.util.stream.Collectors;
+
+@Mapper(imports = Collectors.class)
 public interface LocalisationMapper {
-    @Mapping(target = "center", ignore = true)
-    @Mapping(target = "polygonPoints", ignore = true)
-    @Mapping(target = "sportTypes", ignore = true)
+    @Mapping(target = "sportTypes", expression = "java(localisation.getSportTypes().stream().map((type)-> type.getSportType()).collect(Collectors.toList()))")
     LocalisationDTO toLocalisationDTO(Localisation localisation);
 }

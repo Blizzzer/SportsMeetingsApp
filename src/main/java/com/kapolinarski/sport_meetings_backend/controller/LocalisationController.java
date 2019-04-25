@@ -5,7 +5,9 @@ import com.kapolinarski.sport_meetings_backend.domain.LocalisationPoint;
 import com.kapolinarski.sport_meetings_backend.domain.SportType;
 import com.kapolinarski.sport_meetings_backend.dtos.LocalisationDTO;
 import com.kapolinarski.sport_meetings_backend.dtos.LocalisationPointDTO;
+import com.kapolinarski.sport_meetings_backend.mapper.LocalisationMapper;
 import com.kapolinarski.sport_meetings_backend.service.LocalisationService;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,8 @@ import static java.util.stream.Collectors.toList;
 public class LocalisationController {
     @Autowired
     private LocalisationService service;
+
+    LocalisationMapper mapper = Mappers.getMapper(LocalisationMapper.class);
 
     @GetMapping("/mock")
     public LocalisationDTO getMockLocalisation() {
@@ -63,7 +67,8 @@ public class LocalisationController {
     @GetMapping("/{id}")
     public LocalisationDTO getSingleLocalisation(@PathVariable Long id) {
         Localisation localisation = service.getSingleLocalisation(id);
-        return mapToLocalisationDTO(localisation);
+//        return mapToLocalisationDTO(localisation);
+        return mapper.toLocalisationDTO(localisation);
     }
 
     private LocalisationDTO mapToLocalisationDTO(Localisation localisation) {

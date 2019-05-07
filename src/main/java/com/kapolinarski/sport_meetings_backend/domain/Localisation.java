@@ -18,7 +18,7 @@ public class Localisation {
 
     private String description;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "center_id")
     private LocalisationPoint center;
 

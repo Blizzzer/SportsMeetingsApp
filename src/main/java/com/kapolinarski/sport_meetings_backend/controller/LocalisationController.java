@@ -7,10 +7,7 @@ import com.kapolinarski.sport_meetings_backend.mapper.LocalisationMapper;
 import com.kapolinarski.sport_meetings_backend.service.LocalisationService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -66,4 +63,15 @@ public class LocalisationController {
         Localisation localisation = service.getSingleLocalisation(id);
         return mapper.toLocalisationDTO(localisation);
     }
+
+    @PostMapping
+    public LocalisationDTO postLocalisation(@RequestBody LocalisationDTO localisationDTO) {
+        Localisation localisation = mapper.toLocalisation(localisationDTO);
+        localisation.getCenter().setType("CENTER");
+        localisation.getPolygonPoints().forEach(polygonPoint -> polygonPoint.setType("POLYGON"));
+        localisation.getSportTypes().forEach(sportType -> sportType.setLocalisation(localisation));
+        Localisation savedLocalisation = service.saveLocalisation(localisation);
+        return mapper.toLocalisationDTO(savedLocalisation);
+    }
+
 }

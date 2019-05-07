@@ -18,4 +18,11 @@ public abstract class LocalisationMapper {
     protected List<String> mapSportTypeToString(List<SportType> sportTypes) {
         return sportTypes.stream().map(SportType::getSportType).collect(toList());
     }
+
+    public abstract Localisation toLocalisation(LocalisationDTO localisationDTO);
+
+    public abstract List<SportType> toSportTypes(List<String> sportTypes);
+
+    @Mapping(target = "sportType", source = "sportType")
+    public abstract SportType toSportType(String sportType);
 }

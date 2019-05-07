@@ -21,4 +21,6 @@ public class LocalisationPoint {
     @ManyToOne
     @JoinColumn(name = "localisation_id")
     private Localisation localisation;
+
+    private String type;
 }

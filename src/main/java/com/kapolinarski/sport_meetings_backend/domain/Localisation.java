@@ -4,7 +4,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="localisation")
@@ -26,7 +28,7 @@ public class Localisation {
     @JoinColumn(name = "localisation_id")
     private List<LocalisationPoint> polygonPoints = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "localisation_id")
-    private List<SportType> sportTypes = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "localisation")
+//    @JoinColumn(name = "localisation_id")
+    private Set<SportType> sportTypes = new HashSet<>();
 }

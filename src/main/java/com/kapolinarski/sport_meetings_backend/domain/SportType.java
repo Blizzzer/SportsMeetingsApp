@@ -14,7 +14,7 @@ public class SportType {
 
     private String sportType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "localisation_id")
     private Localisation localisation;
 }

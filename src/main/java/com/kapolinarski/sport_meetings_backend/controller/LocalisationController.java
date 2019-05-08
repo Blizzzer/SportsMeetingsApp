@@ -74,4 +74,8 @@ public class LocalisationController {
         return mapper.toLocalisationDTO(savedLocalisation);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteLocalisation(@PathVariable Long id) {
+        service.deleteLocalisation(id);
+    }
 }

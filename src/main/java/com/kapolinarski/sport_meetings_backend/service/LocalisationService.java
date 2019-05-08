@@ -21,4 +21,9 @@ public class LocalisationService {
     public Localisation saveLocalisation(Localisation localisation) {
         return repository.save(localisation);
     }
+
+    @Transactional
+    public void deleteLocalisation(Long id) {
+        repository.deleteById(id);
+    }
 }

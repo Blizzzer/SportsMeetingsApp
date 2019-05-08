@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="localisation")
+@Table(name = "localisation")
 @Data
 public class Localisation {
     @Id
@@ -26,7 +26,6 @@ public class Localisation {
     @JoinColumn(name = "localisation_id")
     private List<LocalisationPoint> polygonPoints = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "localisation_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "localisation", orphanRemoval = true)
     private List<SportType> sportTypes = new ArrayList<>();
 }
